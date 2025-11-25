@@ -153,6 +153,7 @@ footer {
   </nav>
 </header>
 
+<!-- Review Form -->
 <div class="review-container">
   <h2>Leave a Review</h2>
 
@@ -186,16 +187,37 @@ footer {
 function submitReview() {
   const reviewText = document.getElementById('reviewText').value;
   const stars = document.querySelector('input[name="star"]:checked');
-  if(!reviewText || !stars) {
-    alert('Please write a review and select a rating!');
+  const userName = "Anonymous"; // Optional: later you can add a Name input field
+
+  if (!reviewText || !stars) {
+    alert("Please write a review and select a rating!");
     return;
   }
-  // For now just show a message. Later, you can send this data to a backend.
-  document.getElementById('reviewMessage').style.display = 'block';
-  setTimeout(() => { document.getElementById('reviewMessage').style.display = 'none'; }, 2000);
+
+  // Google Form POST URL
+  const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSfNAVqnnSnEKp8uRn-WXClpljfRCF9IB8WxzFh0Ynx7saeepg/formResponse";
+
+  // Prepare data
+  const formData = new FormData();
+  formData.append("entry.36607560", reviewText);    // Review text
+  formData.append("entry.677678895", stars.value);  // Rating
+  formData.append("entry.123621195", userName);     // Name
+
+  // Submit to Google Form
+  fetch(formURL, {
+    method: "POST",
+    mode: "no-cors",
+    body: formData
+  });
+
+  // Show confirmation
+  document.getElementById("reviewMessage").style.display = "block";
+  setTimeout(() => {
+    document.getElementById("reviewMessage").style.display = "none";
+  }, 2000);
 
   // Clear form
-  document.getElementById('reviewText').value = '';
+  document.getElementById("reviewText").value = "";
   stars.checked = false;
 }
 </script>
