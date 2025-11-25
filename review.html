@@ -12,171 +12,105 @@ body {
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(135deg, #0d0d0d, #111822, #0a0f25);
   color: #e0e0e0;
-  min-height: 100vh;
   padding-top: 80px;
+  min-height: 100vh;
 }
 
 /* Header */
 header {
   position: fixed;
   top:0; left:0; width:100%;
-  z-index:1000;
   background: rgba(0,0,0,0.85);
   padding: 12px 30px;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  z-index: 1000;
   border-bottom: 3px solid #00bfff;
-  box-shadow: 0 4px 12px rgba(0,191,255,0.3);
-}
-
-nav {
-  display: flex;
-  gap: 12px;
 }
 
 nav a {
-  color: #ccc;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 6px 14px;
-  border-radius: 6px;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
+  color:#ccc;
+  text-decoration:none;
+  font-weight:bold;
+  margin-left:12px;
+  padding:6px 14px;
+  border-radius:6px;
+  transition:0.3s;
+}
+nav a:hover, nav a.active {
+  color:#00bfff;
+  border:2px solid #00bfff;
+  transform:scale(1.05);
 }
 
-nav a:hover, nav a.active {
-  color: #00bfff;
-  border: 2px solid #00bfff;
-  box-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff, 0 0 15px #00bfff;
-  background: transparent;
-  transform: scale(1.05);
+/* Section */
+.section-panel {
+  background: rgba(20,20,30,0.9);
+  max-width: 900px;
+  margin: 100px auto 50px auto;
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.section-panel h2 {
+  font-size:28px;
+  color:#00bfff;
+  margin-bottom:15px;
+  border-bottom:2px solid #00bfff;
+  display:inline-block;
+  padding-bottom:5px;
+}
+
+.cards {
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  justify-content:center;
+}
+
+.card {
+  background:#000;
+  border:2px solid #00bfff;
+  padding:20px;
+  width:250px;
+  border-radius:12px;
+  box-shadow:0 0 15px #00bfff40;
+  text-align:center;
 }
 
 /* Review Form */
-.review-container {
-  max-width: 600px;
-  margin: 120px auto 50px auto;
-  background: rgba(20,20,30,0.9);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px #00bfff40;
-  text-align: center;
+textarea {
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:2px solid #00bfff;
+  background:#111822;
+  color:#e0e0e0;
+  resize:none;
+  margin-bottom:12px;
 }
 
-.review-container h2 {
-  font-size: 28px;
-  color: #00bfff;
-  margin-bottom: 20px;
+button {
+  padding:10px 25px;
+  border:2px solid #00bfff;
+  background:transparent;
+  color:#00bfff;
+  font-weight:bold;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-.review-container textarea {
-  width: 100%;
-  height: 120px;
-  padding: 12px;
-  border-radius: 10px;
-  border: 2px solid #00bfff;
-  background: #111822;
-  color: #e0e0e0;
-  resize: none;
-  margin-bottom: 15px;
-  font-size: 16px;
-}
-
-.review-container .rating {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-
-.review-container .rating input {
-  display: none;
-}
-
-.review-container .rating label {
-  font-size: 30px;
-  color: #555;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.review-container .rating label:hover,
-.review-container .rating label:hover ~ label,
-.review-container .rating input:checked ~ label {
-  color: #00bfff;
-  transform: scale(1.2);
-}
-
-.review-container button {
-  padding: 10px 25px;
-  font-size: 16px;
-  font-weight: bold;
-  border: 2px solid #00bfff;
-  border-radius: 10px;
-  background: transparent;
-  color: #00bfff;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.review-container button:hover {
-  background: #00bfff;
-  color: #111822;
-}
-
-/* Past Reviews */
-#pastReviews {
-  max-width: 900px;
-  margin: 40px auto 80px auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-#pastReviews .card {
-  width: 280px;
-  background: #000;
-  border: 2px solid #00bfff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px #00bfff40;
-}
-
-#pastReviews .card h3 {
-  font-size: 18px;
-  color: #00bfff;
-  margin-bottom: 8px;
-}
-
-#pastReviews .card p {
-  font-size: 15px;
-  color: #b8c6ff;
-  margin-bottom: 8px;
-}
-
-#pastReviews .card .rating {
-  color: #00bfff;
-  font-size: 18px;
+button:hover {
+  background:#00bfff;
+  color:#111822;
 }
 
 /* Footer */
-footer {
-  text-align:center;
-  padding:20px;
-  background:#111822;
-  color:#777;
-  margin-top: 50px;
-}
+footer { text-align:center; padding:20px; background:#111822; color:#777; margin-top:50px; }
 
-/* Responsive */
 @media(max-width:768px){
-  .review-container { margin: 140px 20px 50px 20px; padding: 20px; }
-  .review-container h2 { font-size: 24px; }
-  .review-container textarea { height: 100px; font-size: 14px; }
-  #pastReviews .card { width: 95%; }
+  .card { width:95%; }
 }
 </style>
 </head>
@@ -190,80 +124,33 @@ footer {
   </nav>
 </header>
 
-<!-- Review Form -->
-<div class="review-container">
-  <h2>Leave a Review</h2>
-
-  <div class="rating">
-    <input type="radio" name="star" id="star5" value="5">
-    <label for="star5">★</label>
-    <input type="radio" name="star" id="star4" value="4">
-    <label for="star4">★</label>
-    <input type="radio" name="star" id="star3" value="3">
-    <label for="star3">★</label>
-    <input type="radio" name="star" id="star2" value="2">
-    <label for="star2">★</label>
-    <input type="radio" name="star" id="star1" value="1">
-    <label for="star1">★</label>
+<!-- Reviews Section -->
+<section class="section-panel" id="reviews">
+  <h2>Past Reviews</h2>
+  <div id="reviewsContainer" class="cards">
+    <p style="color:#aaa;">Loading reviews...</p>
   </div>
-
-  <textarea placeholder="Write your review here..." id="reviewText"></textarea>
-  <button onclick="submitReview()">Submit Review</button>
-  <p id="reviewMessage" style="color:#00ff88; margin-top:12px; display:none;">Review submitted!</p>
-</div>
-
-<!-- Past Reviews -->
-<section id="pastReviews">
-  <!-- Reviews from Google Sheets will appear here -->
 </section>
 
+<!-- Submit Review Section -->
+<section class="section-panel">
+  <h2>Submit Your Review</h2>
+  <form id="reviewForm" target="_blank" action="https://docs.google.com/forms/d/e/1FAIpQLSfNAVqnnSnEKp8uRn-WXClpljfRCF9IB8WxzFh0Ynx7saeepg/formResponse" method="POST">
+    <input type="text" name="entry.123621195" placeholder="Your Name" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:10px; border:2px solid #00bfff; background:#111822; color:#e0e0e0;">
+    <textarea name="entry.36607560" placeholder="Write your review..." rows="4" required></textarea>
+    <input type="number" name="entry.677678895" placeholder="Rating 1-5" min="1" max="5" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:10px; border:2px solid #00bfff; background:#111822; color:#e0e0e0;">
+    <button type="submit">Submit Review</button>
+  </form>
+</section>
+
+<!-- Footer -->
 <footer>© 2025 Maruf Hasan Niloy. All rights reserved.</footer>
 
 <script>
-// Submit Review
-function submitReview() {
-  const reviewText = document.getElementById('reviewText').value;
-  const stars = document.querySelector('input[name="star"]:checked');
-  const userName = "Anonymous";
-
-  if (!reviewText || !stars) {
-    alert("Please write a review and select a rating!");
-    return;
-  }
-
-  const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSfNAVqnnSnEKp8uRn-WXClpljfRCF9IB8WxzFh0Ynx7saeepg/formResponse";
-  const formData = new FormData();
-  formData.append("entry.36607560", reviewText);
-  formData.append("entry.677678895", stars.value);
-  formData.append("entry.123621195", userName);
-
-  fetch(formURL, { method: "POST", mode: "no-cors", body: formData });
-
-  document.getElementById("reviewMessage").style.display = "block";
-  setTimeout(() => { document.getElementById("reviewMessage").style.display = "none"; }, 2000);
-
-  document.getElementById("reviewText").value = "";
-  stars.checked = false;
-}
-
-// Display past reviews
-const reviewsList = document.getElementById("pastReviews");
-const sheetURL = "YOUR_GOOGLE_SCRIPT_URL"; // Replace with your deployed Apps Script URL
-
-fetch(sheetURL)
-  .then(res => res.json())
-  .then(data => {
-    data.reverse(); // Latest reviews first
-    data.forEach(r => {
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `<h3>${r.name}</h3>
-                       <p>${r.review}</p>
-                       <div class="rating">${"★".repeat(r.rating)}</div>`;
-      reviewsList.appendChild(div);
-    });
-  })
-  .catch(err => console.error(err));
+// Optional: show success message after submission
+document.getElementById('reviewForm').addEventListener('submit', () => {
+  alert('Your review has been submitted! Thank you.');
+});
 </script>
 
 </body>
