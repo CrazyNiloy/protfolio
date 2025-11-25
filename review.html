@@ -90,6 +90,16 @@ textarea {
   margin-bottom:12px;
 }
 
+input[type="text"], input[type="number"] {
+  width:100%;
+  padding:10px;
+  margin-bottom:12px;
+  border-radius:10px;
+  border:2px solid #00bfff;
+  background:#111822;
+  color:#e0e0e0;
+}
+
 button {
   padding:10px 25px;
   border:2px solid #00bfff;
@@ -120,7 +130,10 @@ footer { text-align:center; padding:20px; background:#111822; color:#777; margin
 <header>
   <nav>
     <a href="index.html">Home</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#projects">Projects</a>
     <a href="review.html" class="active">Reviews</a>
+    <a href="index.html#social">Connect</a>
   </nav>
 </header>
 
@@ -136,9 +149,9 @@ footer { text-align:center; padding:20px; background:#111822; color:#777; margin
 <section class="section-panel">
   <h2>Submit Your Review</h2>
   <form id="reviewForm" target="_blank" action="https://docs.google.com/forms/d/e/1FAIpQLSfNAVqnnSnEKp8uRn-WXClpljfRCF9IB8WxzFh0Ynx7saeepg/formResponse" method="POST">
-    <input type="text" name="entry.123621195" placeholder="Your Name" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:10px; border:2px solid #00bfff; background:#111822; color:#e0e0e0;">
+    <input type="text" name="entry.123621195" placeholder="Your Name" required>
     <textarea name="entry.36607560" placeholder="Write your review..." rows="4" required></textarea>
-    <input type="number" name="entry.677678895" placeholder="Rating 1-5" min="1" max="5" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:10px; border:2px solid #00bfff; background:#111822; color:#e0e0e0;">
+    <input type="number" name="entry.677678895" placeholder="Rating 1-5" min="1" max="5" required>
     <button type="submit">Submit Review</button>
   </form>
 </section>
