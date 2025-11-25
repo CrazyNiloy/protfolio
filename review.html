@@ -57,7 +57,7 @@ nav a:hover, nav a.active {
 /* Review Form */
 .review-container {
   max-width: 600px;
-  margin: 100px auto 50px auto;
+  margin: 120px auto 50px auto;
   background: rgba(20,20,30,0.9);
   padding: 30px;
   border-radius: 15px;
@@ -126,6 +126,42 @@ nav a:hover, nav a.active {
   color: #111822;
 }
 
+/* Past Reviews */
+#pastReviews {
+  max-width: 900px;
+  margin: 40px auto 80px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+#pastReviews .card {
+  width: 280px;
+  background: #000;
+  border: 2px solid #00bfff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #00bfff40;
+}
+
+#pastReviews .card h3 {
+  font-size: 18px;
+  color: #00bfff;
+  margin-bottom: 8px;
+}
+
+#pastReviews .card p {
+  font-size: 15px;
+  color: #b8c6ff;
+  margin-bottom: 8px;
+}
+
+#pastReviews .card .rating {
+  color: #00bfff;
+  font-size: 18px;
+}
+
 /* Footer */
 footer {
   text-align:center;
@@ -137,9 +173,10 @@ footer {
 
 /* Responsive */
 @media(max-width:768px){
-  .review-container { margin: 120px 20px 50px 20px; padding: 20px; }
+  .review-container { margin: 140px 20px 50px 20px; padding: 20px; }
   .review-container h2 { font-size: 24px; }
   .review-container textarea { height: 100px; font-size: 14px; }
+  #pastReviews .card { width: 95%; }
 }
 </style>
 </head>
@@ -157,7 +194,6 @@ footer {
 <div class="review-container">
   <h2>Leave a Review</h2>
 
-  <!-- Star Rating -->
   <div class="rating">
     <input type="radio" name="star" id="star5" value="5">
     <label for="star5">★</label>
@@ -171,55 +207,63 @@ footer {
     <label for="star1">★</label>
   </div>
 
-  <!-- Review Text -->
   <textarea placeholder="Write your review here..." id="reviewText"></textarea>
-
-  <!-- Submit Button -->
   <button onclick="submitReview()">Submit Review</button>
-
-  <!-- Message -->
   <p id="reviewMessage" style="color:#00ff88; margin-top:12px; display:none;">Review submitted!</p>
 </div>
+
+<!-- Past Reviews -->
+<section id="pastReviews">
+  <!-- Reviews from Google Sheets will appear here -->
+</section>
 
 <footer>© 2025 Maruf Hasan Niloy. All rights reserved.</footer>
 
 <script>
+// Submit Review
 function submitReview() {
   const reviewText = document.getElementById('reviewText').value;
   const stars = document.querySelector('input[name="star"]:checked');
-  const userName = "Anonymous"; // Optional: later you can add a Name input field
+  const userName = "Anonymous";
 
   if (!reviewText || !stars) {
     alert("Please write a review and select a rating!");
     return;
   }
 
-  // Google Form POST URL
   const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSfNAVqnnSnEKp8uRn-WXClpljfRCF9IB8WxzFh0Ynx7saeepg/formResponse";
-
-  // Prepare data
   const formData = new FormData();
-  formData.append("entry.36607560", reviewText);    // Review text
-  formData.append("entry.677678895", stars.value);  // Rating
-  formData.append("entry.123621195", userName);     // Name
+  formData.append("entry.36607560", reviewText);
+  formData.append("entry.677678895", stars.value);
+  formData.append("entry.123621195", userName);
 
-  // Submit to Google Form
-  fetch(formURL, {
-    method: "POST",
-    mode: "no-cors",
-    body: formData
-  });
+  fetch(formURL, { method: "POST", mode: "no-cors", body: formData });
 
-  // Show confirmation
   document.getElementById("reviewMessage").style.display = "block";
-  setTimeout(() => {
-    document.getElementById("reviewMessage").style.display = "none";
-  }, 2000);
+  setTimeout(() => { document.getElementById("reviewMessage").style.display = "none"; }, 2000);
 
-  // Clear form
   document.getElementById("reviewText").value = "";
   stars.checked = false;
 }
+
+// Display past reviews
+const reviewsList = document.getElementById("pastReviews");
+const sheetURL = "YOUR_GOOGLE_SCRIPT_URL"; // Replace with your deployed Apps Script URL
+
+fetch(sheetURL)
+  .then(res => res.json())
+  .then(data => {
+    data.reverse(); // Latest reviews first
+    data.forEach(r => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `<h3>${r.name}</h3>
+                       <p>${r.review}</p>
+                       <div class="rating">${"★".repeat(r.rating)}</div>`;
+      reviewsList.appendChild(div);
+    });
+  })
+  .catch(err => console.error(err));
 </script>
 
 </body>
