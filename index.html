@@ -6,6 +6,7 @@
 <title>Maruf Hasan Niloy Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* your previous CSS stays the same */
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
@@ -227,10 +228,10 @@ footer {
 <!-- Header -->
 <header>
  <nav>
-  <a href="index.html" class="active">Home</a>
+  <a href="index.html">Home</a>
   <a href="#skills">Skills</a>
   <a href="#projects">Projects</a>
-  <a href="review.html">Reviews</a> <!-- NEW: opens review page -->
+  <a href="review.html">Reviews</a>
   <a href="#social">Connect</a>
  </nav>
 </header>
@@ -246,60 +247,47 @@ footer {
 <section class="section-panel" id="skills">
   <h2>Skills</h2>
   <div class="cards">
-
-    <!-- Minecraft & Server Development -->
     <div class="card">Minecraft Server Setup</div>
     <div class="card">Custom Plugin Development</div>
     <div class="card">Server Optimization</div>
     <div class="card">VPS Setup & Management</div>
-
-    <!-- Web Development -->
     <div class="card">Java, CSS & HTML</div>
     <div class="card">Responsive Web Design</div>
     <div class="card">Website Performance Optimization</div>
-
-    <!-- Graphic Designing -->
     <div class="card">Designing</div>
     <div class="card">Banner & Logo Design</div>
     <div class="card">Adobe Photoshop / Canva</div>
-
   </div>
 </section>
+
 <!-- Projects Section -->
 <section class="section-panel" id="projects">
   <h2>Projects</h2>
   <div class="cards">
-
     <div class="card">
       <h3>50+ Minecraft Server Setups</h3>
       <p>Completed fully optimized servers including plugins, ranks, GUI menus, permissions, gameplay systems, and performance tuning.</p>
     </div>
-
     <div class="card">
       <h3>20+ Website Setups</h3>
       <p>Designed and built responsive websites for businesses, portfolios, stores, and custom landing pages.</p>
     </div>
-
     <div class="card">
       <h3>4.5★ Rating on Fiverr & Upwork</h3>
       <p>Successfully delivered high-quality work in server development, configuration, and graphic design services.</p>
     </div>
-
     <div class="card">
       <h3>Custom Plugin Development</h3>
       <p>Developed multiple custom plugins for gameplay features, automation, economy, protection, and server utilities.</p>
     </div>
-
     <div class="card">
       <h3>Graphic Design Projects</h3>
       <p>Created professional logos, banners, thumbnails, and server branding packs for clients.</p>
     </div>
-
     <div class="card">
       <h3>Full Server Branding</h3>
       <p>Delivered complete branding packages including logo, icon, banner, store design, and UI elements.</p>
     </div>
-
   </div>
 </section>
 
@@ -334,10 +322,30 @@ discordContainer.addEventListener('click', () => {
     })
     .catch(err => console.error('Could not copy text: ', err));
 });
+
+// Highlight nav link based on section in viewport
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
+
+window.addEventListener('scroll', () => {
+  let scrollY = window.pageYOffset;
+
+  sections.forEach(section => {
+    const sectionHeight = section.offsetHeight;
+    const sectionTop = section.offsetTop - 100; // adjust offset
+    const sectionId = section.getAttribute('id');
+
+    if(scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if(link.getAttribute('href') === '#' + sectionId){
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+});
 </script>
 
 </body>
 </html>
-
-
-
