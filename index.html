@@ -62,7 +62,7 @@ nav a {
   transition: all 0.3s ease;
 }
 
-nav a:hover, nav a.active {
+nav a:hover {
   color: #00bfff;
   border: 2px solid #00bfff;
   box-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff, 0 0 15px #00bfff;
@@ -321,29 +321,7 @@ discordContainer.addEventListener('click', () => {
     .catch(err => console.error('Could not copy text: ', err));
 });
 
-// Scroll-based nav glow
-const sections = document.querySelectorAll('.section-panel, .hero');
-const navLinks = document.querySelectorAll('nav a');
-
-function updateNavGlow() {
-  let scrollPos = window.scrollY + 120; // header offset
-  sections.forEach(section => {
-    const top = section.offsetTop;
-    const bottom = top + section.offsetHeight;
-    let id = section.id || 'home';
-    if(scrollPos >= top && scrollPos < bottom) {
-      navLinks.forEach(link => link.classList.remove('active'));
-      navLinks.forEach(link => {
-        if(link.getAttribute('href').includes(id)) {
-          link.classList.add('active');
-        }
-      });
-    }
-  });
-}
-
-window.addEventListener('scroll', updateNavGlow);
-window.addEventListener('load', updateNavGlow);
+// Removed scroll-based nav glow. Only hover effect remains.
 </script>
 
 </body>
