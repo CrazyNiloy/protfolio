@@ -26,6 +26,7 @@ header {
   justify-content: flex-end;
   z-index: 1000;
   border-bottom: 3px solid #00bfff;
+  box-shadow: 0 4px 12px rgba(0,191,255,0.3);
 }
 
 nav a {
@@ -35,11 +36,13 @@ nav a {
   margin-left:12px;
   padding:6px 14px;
   border-radius:6px;
+  border: 2px solid transparent;
   transition:0.3s;
 }
 nav a:hover, nav a.active {
   color:#00bfff;
   border:2px solid #00bfff;
+  box-shadow:0 0 5px #00bfff,0 0 10px #00bfff,0 0 15px #00bfff;
   transform:scale(1.05);
 }
 
@@ -150,13 +153,13 @@ footer { text-align:center; padding:20px; background:#111822; color:#777; margin
 <footer>© 2025 Maruf Hasan Niloy. All rights reserved.</footer>
 
 <script>
-// Highlight current page in nav
+// Highlight current page in nav with glow effect
 const navLinks = document.querySelectorAll('nav a');
 const currentPage = location.pathname.split("/").pop();
 navLinks.forEach(link => {
   const linkPage = link.getAttribute('href').split("/").pop();
   if(linkPage === currentPage) {
-    link.classList.add('active');
+    link.classList.add('active'); // glow effect
   }
 });
 
