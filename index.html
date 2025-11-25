@@ -6,7 +6,6 @@
 <title>Maruf Hasan Niloy Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* your previous CSS stays the same */
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
@@ -69,6 +68,18 @@ nav a:hover, nav a.active {
   box-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff, 0 0 15px #00bfff;
   background: transparent;
   transform: scale(1.05);
+}
+
+/* Glow effect for active section cards */
+.section-panel.active .card {
+  box-shadow: 0 0 30px #00bfff, 0 0 50px #00bfff, 0 0 70px #00bfff;
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+}
+
+.section-panel.active .card.current {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 0 35px #00bfff, 0 0 55px #00bfff, 0 0 75px #00bfff;
 }
 
 /* Hero */
@@ -228,7 +239,7 @@ footer {
 <!-- Header -->
 <header>
  <nav>
-  <a href="index.html">Home</a>
+  <a href="index.html" class="active">Home</a>
   <a href="#skills">Skills</a>
   <a href="#projects">Projects</a>
   <a href="review.html">Reviews</a>
@@ -237,7 +248,7 @@ footer {
 </header>
 
 <!-- Hero -->
-<section class="hero">
+<section class="hero" id="home">
   <a href="profile.html"><img src="assets/me.png" alt="Maruf Hasan Niloy"></a>
   <h1>Maruf Hasan Niloy</h1>
   <p>Graphics Designer | Minecraft Developer</p>
@@ -310,6 +321,7 @@ footer {
 <footer>© 2025 Maruf Hasan Niloy. All rights reserved.</footer>
 
 <script>
+// Discord copy
 const discordContainer = document.getElementById('discordCopyContainer');
 const copyMessage = document.getElementById('copyMessage');
 
@@ -319,11 +331,10 @@ discordContainer.addEventListener('click', () => {
     .then(() => {
       copyMessage.style.display = 'block';
       setTimeout(() => { copyMessage.style.display = 'none'; }, 1500);
-    })
-    .catch(err => console.error('Could not copy text: ', err));
+    });
 });
 
-// Highlight nav link based on section in viewport
+// Scroll section highlighting
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('nav a');
 
@@ -332,16 +343,25 @@ window.addEventListener('scroll', () => {
 
   sections.forEach(section => {
     const sectionHeight = section.offsetHeight;
-    const sectionTop = section.offsetTop - 100; // adjust offset
+    const sectionTop = section.offsetTop - 150;
     const sectionId = section.getAttribute('id');
 
-    if(scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+    if(scrollY >= sectionTop && scrollY < sectionTop + sectionHeight){
+      // Highlight nav link
       navLinks.forEach(link => {
         link.classList.remove('active');
-        if(link.getAttribute('href') === '#' + sectionId){
-          link.classList.add('active');
-        }
+        if(link.getAttribute('href') === '#' + sectionId) link.classList.add('active');
       });
+
+      // Highlight section cards
+      sections.forEach(sec => sec.classList.remove('active'));
+      section.classList.add('active');
+
+      // Optional: cycle card glow
+      const cards = section.querySelectorAll('.card');
+      cards.forEach(c => c.classList.remove('current'));
+      const index = Math.floor((scrollY - sectionTop) / sectionHeight * cards.length);
+      if(cards[index]) cards[index].classList.add('current');
     }
   });
 });
