@@ -26,7 +26,6 @@ header {
   justify-content: flex-end;
   z-index: 1000;
   border-bottom: 3px solid #00bfff;
-  box-shadow: 0 4px 12px rgba(0,191,255,0.3);
 }
 
 nav a {
@@ -93,6 +92,16 @@ textarea {
   margin-bottom:12px;
 }
 
+input[type="text"], input[type="number"] {
+  width:100%;
+  padding:10px;
+  margin-bottom:12px;
+  border-radius:10px;
+  border:2px solid #00bfff;
+  background:#111822;
+  color:#e0e0e0;
+}
+
 button {
   padding:10px 25px;
   border:2px solid #00bfff;
@@ -123,14 +132,12 @@ footer { text-align:center; padding:20px; background:#111822; color:#777; margin
 <header>
   <nav>
     <a href="index.html">Home</a>
-    <a href="index.html#skills">Skills</a>
-    <a href="index.html#projects">Projects</a>
-    <a href="review.html">Reviews</a>
-    <a href="index.html#social">Connect</a>
+    <a href="#reviews">Past Reviews</a>
+    <a href="#submit">Submit Review</a>
   </nav>
 </header>
 
-<!-- Reviews Section -->
+<!-- Past Reviews Section -->
 <section class="section-panel" id="reviews">
   <h2>Past Reviews</h2>
   <div id="reviewsContainer" class="cards">
@@ -139,12 +146,12 @@ footer { text-align:center; padding:20px; background:#111822; color:#777; margin
 </section>
 
 <!-- Submit Review Section -->
-<section class="section-panel">
+<section class="section-panel" id="submit">
   <h2>Submit Your Review</h2>
   <form id="reviewForm" target="_blank" action="https://docs.google.com/forms/d/e/1FAIpQLSfNAVqnnSnEKp8uRn-WXClpljfRCF9IB8WxzFh0Ynx7saeepg/formResponse" method="POST">
-    <input type="text" name="entry.123621195" placeholder="Your Name" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:10px; border:2px solid #00bfff; background:#111822; color:#e0e0e0;">
+    <input type="text" name="entry.123621195" placeholder="Your Name" required>
     <textarea name="entry.36607560" placeholder="Write your review..." rows="4" required></textarea>
-    <input type="number" name="entry.677678895" placeholder="Rating 1-5" min="1" max="5" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:10px; border:2px solid #00bfff; background:#111822; color:#e0e0e0;">
+    <input type="number" name="entry.677678895" placeholder="Rating 1-5" min="1" max="5" required>
     <button type="submit">Submit Review</button>
   </form>
 </section>
@@ -153,17 +160,31 @@ footer { text-align:center; padding:20px; background:#111822; color:#777; margin
 <footer>© 2025 Maruf Hasan Niloy. All rights reserved.</footer>
 
 <script>
-// Highlight current page in nav with glow effect
+// Highlight nav link based on scroll position
+const sections = document.querySelectorAll('.section-panel');
 const navLinks = document.querySelectorAll('nav a');
-const currentPage = location.pathname.split("/").pop();
-navLinks.forEach(link => {
-  const linkPage = link.getAttribute('href').split("/").pop();
-  if(linkPage === currentPage) {
-    link.classList.add('active'); // glow effect
-  }
-});
 
-// Optional: show success message after submission
+function updateNavGlow() {
+  let scrollPos = window.scrollY + 120; // header offset
+  sections.forEach(section => {
+    const top = section.offsetTop;
+    const bottom = top + section.offsetHeight;
+    const id = section.id;
+
+    if (scrollPos >= top && scrollPos < bottom) {
+      navLinks.forEach(link => link.classList.remove('active'));
+      navLinks.forEach(link => {
+        if(link.getAttribute('href').includes(id)) {
+          link.classList.add('active');
+        }
+      });
+    }
+  });
+}
+
+window.addEventListener('scroll', updateNavGlow);
+
+// Show success message after submission
 document.getElementById('reviewForm').addEventListener('submit', () => {
   alert('Your review has been submitted! Thank you.');
 });
