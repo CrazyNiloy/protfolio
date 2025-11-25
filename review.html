@@ -20,30 +20,42 @@ body {
 header {
   position: fixed;
   top:0; left:0; width:100%;
+  z-index:1000;
   background: rgba(0,0,0,0.85);
   padding: 12px 30px;
   display: flex;
   justify-content: flex-end;
-  z-index: 1000;
+  align-items: center;
   border-bottom: 3px solid #00bfff;
+  box-shadow: 0 4px 12px rgba(0,191,255,0.3);
+}
+
+/* Nav */
+nav {
+  display: flex;
+  gap: 12px;
 }
 
 nav a {
-  color:#ccc;
-  text-decoration:none;
-  font-weight:bold;
-  margin-left:12px;
-  padding:6px 14px;
-  border-radius:6px;
-  transition:0.3s;
-}
-nav a:hover, nav a.active {
-  color:#00bfff;
-  border:2px solid #00bfff;
-  transform:scale(1.05);
+  color: #ccc;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
 }
 
-/* Section */
+nav a:hover, nav a.active {
+  color: #00bfff;
+  border: 2px solid #00bfff;
+  box-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff, 0 0 15px #00bfff;
+  background: transparent;
+  transform: scale(1.05);
+}
+
+/* Sections */
 .section-panel {
   background: rgba(20,20,30,0.9);
   max-width: 900px;
@@ -128,13 +140,13 @@ footer { text-align:center; padding:20px; background:#111822; color:#777; margin
 
 <!-- Header -->
 <header>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="index.html#skills">Skills</a>
-    <a href="index.html#projects">Projects</a>
-    <a href="review.html" class="active">Reviews</a>
-    <a href="index.html#social">Connect</a>
-  </nav>
+ <nav>
+  <a href="index.html" class="active">Home</a>
+  <a href="index.html#skills">Skills</a>
+  <a href="index.html#projects">Projects</a>
+  <a href="review.html">Reviews</a>
+  <a href="index.html#social">Connect</a>
+ </nav>
 </header>
 
 <!-- Reviews Section -->
