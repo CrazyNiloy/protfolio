@@ -20,42 +20,30 @@ body {
 header {
   position: fixed;
   top:0; left:0; width:100%;
-  z-index:1000;
   background: rgba(0,0,0,0.85);
   padding: 12px 30px;
   display: flex;
   justify-content: flex-end;
-  align-items: center;
+  z-index: 1000;
   border-bottom: 3px solid #00bfff;
-  box-shadow: 0 4px 12px rgba(0,191,255,0.3);
-}
-
-/* Nav */
-nav {
-  display: flex;
-  gap: 12px;
 }
 
 nav a {
-  color: #ccc;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 6px 14px;
-  border-radius: 6px;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
+  color:#ccc;
+  text-decoration:none;
+  font-weight:bold;
+  margin-left:12px;
+  padding:6px 14px;
+  border-radius:6px;
+  transition:0.3s;
 }
-
 nav a:hover, nav a.active {
-  color: #00bfff;
-  border: 2px solid #00bfff;
-  box-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff, 0 0 15px #00bfff;
-  background: transparent;
-  transform: scale(1.05);
+  color:#00bfff;
+  border:2px solid #00bfff;
+  transform:scale(1.05);
 }
 
-/* Sections */
+/* Section */
 .section-panel {
   background: rgba(20,20,30,0.9);
   max-width: 900px;
@@ -102,16 +90,6 @@ textarea {
   margin-bottom:12px;
 }
 
-input[type="text"], input[type="number"] {
-  width:100%;
-  padding:10px;
-  margin-bottom:12px;
-  border-radius:10px;
-  border:2px solid #00bfff;
-  background:#111822;
-  color:#e0e0e0;
-}
-
 button {
   padding:10px 25px;
   border:2px solid #00bfff;
@@ -140,13 +118,13 @@ footer { text-align:center; padding:20px; background:#111822; color:#777; margin
 
 <!-- Header -->
 <header>
- <nav>
-  <a href="index.html" class="active">Home</a>
-  <a href="index.html#skills">Skills</a>
-  <a href="index.html#projects">Projects</a>
-  <a href="review.html">Reviews</a>
-  <a href="index.html#social">Connect</a>
- </nav>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="review.html">Reviews</a>
+    <a href="index.html#social">Connect</a>
+  </nav>
 </header>
 
 <!-- Reviews Section -->
@@ -161,9 +139,9 @@ footer { text-align:center; padding:20px; background:#111822; color:#777; margin
 <section class="section-panel">
   <h2>Submit Your Review</h2>
   <form id="reviewForm" target="_blank" action="https://docs.google.com/forms/d/e/1FAIpQLSfNAVqnnSnEKp8uRn-WXClpljfRCF9IB8WxzFh0Ynx7saeepg/formResponse" method="POST">
-    <input type="text" name="entry.123621195" placeholder="Your Name" required>
+    <input type="text" name="entry.123621195" placeholder="Your Name" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:10px; border:2px solid #00bfff; background:#111822; color:#e0e0e0;">
     <textarea name="entry.36607560" placeholder="Write your review..." rows="4" required></textarea>
-    <input type="number" name="entry.677678895" placeholder="Rating 1-5" min="1" max="5" required>
+    <input type="number" name="entry.677678895" placeholder="Rating 1-5" min="1" max="5" required style="width:100%; padding:10px; margin-bottom:12px; border-radius:10px; border:2px solid #00bfff; background:#111822; color:#e0e0e0;">
     <button type="submit">Submit Review</button>
   </form>
 </section>
@@ -172,6 +150,16 @@ footer { text-align:center; padding:20px; background:#111822; color:#777; margin
 <footer>© 2025 Maruf Hasan Niloy. All rights reserved.</footer>
 
 <script>
+// Highlight current page in nav
+const navLinks = document.querySelectorAll('nav a');
+const currentPage = location.pathname.split("/").pop();
+navLinks.forEach(link => {
+  const linkPage = link.getAttribute('href').split("/").pop();
+  if(linkPage === currentPage) {
+    link.classList.add('active');
+  }
+});
+
 // Optional: show success message after submission
 document.getElementById('reviewForm').addEventListener('submit', () => {
   alert('Your review has been submitted! Thank you.');
