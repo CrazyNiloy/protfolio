@@ -70,18 +70,6 @@ nav a:hover, nav a.active {
   transform: scale(1.05);
 }
 
-/* Glow effect for active section cards */
-.section-panel.active .card {
-  box-shadow: 0 0 30px #00bfff, 0 0 50px #00bfff, 0 0 70px #00bfff;
-  transform: translateY(-5px);
-  transition: all 0.3s ease;
-}
-
-.section-panel.active .card.current {
-  transform: scale(1.05) translateY(-5px);
-  box-shadow: 0 0 35px #00bfff, 0 0 55px #00bfff, 0 0 75px #00bfff;
-}
-
 /* Hero */
 .hero {
   text-align: center;
@@ -242,13 +230,13 @@ footer {
   <a href="index.html" class="active">Home</a>
   <a href="#skills">Skills</a>
   <a href="#projects">Projects</a>
-  <a href="review.html">Reviews</a>
+  <a href="review.html">Reviews</a> <!-- NEW: opens review page -->
   <a href="#social">Connect</a>
  </nav>
 </header>
 
 <!-- Hero -->
-<section class="hero" id="home">
+<section class="hero">
   <a href="profile.html"><img src="assets/me.png" alt="Maruf Hasan Niloy"></a>
   <h1>Maruf Hasan Niloy</h1>
   <p>Graphics Designer | Minecraft Developer</p>
@@ -258,47 +246,60 @@ footer {
 <section class="section-panel" id="skills">
   <h2>Skills</h2>
   <div class="cards">
+
+    <!-- Minecraft & Server Development -->
     <div class="card">Minecraft Server Setup</div>
     <div class="card">Custom Plugin Development</div>
     <div class="card">Server Optimization</div>
     <div class="card">VPS Setup & Management</div>
+
+    <!-- Web Development -->
     <div class="card">Java, CSS & HTML</div>
     <div class="card">Responsive Web Design</div>
     <div class="card">Website Performance Optimization</div>
+
+    <!-- Graphic Designing -->
     <div class="card">Designing</div>
     <div class="card">Banner & Logo Design</div>
     <div class="card">Adobe Photoshop / Canva</div>
+
   </div>
 </section>
-
 <!-- Projects Section -->
 <section class="section-panel" id="projects">
   <h2>Projects</h2>
   <div class="cards">
+
     <div class="card">
       <h3>50+ Minecraft Server Setups</h3>
       <p>Completed fully optimized servers including plugins, ranks, GUI menus, permissions, gameplay systems, and performance tuning.</p>
     </div>
+
     <div class="card">
       <h3>20+ Website Setups</h3>
       <p>Designed and built responsive websites for businesses, portfolios, stores, and custom landing pages.</p>
     </div>
+
     <div class="card">
       <h3>4.5★ Rating on Fiverr & Upwork</h3>
       <p>Successfully delivered high-quality work in server development, configuration, and graphic design services.</p>
     </div>
+
     <div class="card">
       <h3>Custom Plugin Development</h3>
       <p>Developed multiple custom plugins for gameplay features, automation, economy, protection, and server utilities.</p>
     </div>
+
     <div class="card">
       <h3>Graphic Design Projects</h3>
       <p>Created professional logos, banners, thumbnails, and server branding packs for clients.</p>
     </div>
+
     <div class="card">
       <h3>Full Server Branding</h3>
       <p>Delivered complete branding packages including logo, icon, banner, store design, and UI elements.</p>
     </div>
+
   </div>
 </section>
 
@@ -321,7 +322,6 @@ footer {
 <footer>© 2025 Maruf Hasan Niloy. All rights reserved.</footer>
 
 <script>
-// Discord copy
 const discordContainer = document.getElementById('discordCopyContainer');
 const copyMessage = document.getElementById('copyMessage');
 
@@ -331,41 +331,12 @@ discordContainer.addEventListener('click', () => {
     .then(() => {
       copyMessage.style.display = 'block';
       setTimeout(() => { copyMessage.style.display = 'none'; }, 1500);
-    });
-});
-
-// Scroll section highlighting
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('nav a');
-
-window.addEventListener('scroll', () => {
-  let scrollY = window.pageYOffset;
-
-  sections.forEach(section => {
-    const sectionHeight = section.offsetHeight;
-    const sectionTop = section.offsetTop - 150;
-    const sectionId = section.getAttribute('id');
-
-    if(scrollY >= sectionTop && scrollY < sectionTop + sectionHeight){
-      // Highlight nav link
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if(link.getAttribute('href') === '#' + sectionId) link.classList.add('active');
-      });
-
-      // Highlight section cards
-      sections.forEach(sec => sec.classList.remove('active'));
-      section.classList.add('active');
-
-      // Optional: cycle card glow
-      const cards = section.querySelectorAll('.card');
-      cards.forEach(c => c.classList.remove('current'));
-      const index = Math.floor((scrollY - sectionTop) / sectionHeight * cards.length);
-      if(cards[index]) cards[index].classList.add('current');
-    }
-  });
+    })
+    .catch(err => console.error('Could not copy text: ', err));
 });
 </script>
 
 </body>
 </html>
+
+
