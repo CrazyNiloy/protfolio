@@ -16,7 +16,7 @@ body {
   min-height: 100vh;
 }
 
-/* Header (same as index) */
+/* Header */
 header {
   position: fixed;
   top:0; left:0; width:100%;
@@ -39,7 +39,7 @@ nav {
 nav a {
   color: #ccc;
   text-decoration: none;
-  font-size: 15px; /* same as index */
+  font-size: 15px;
   font-weight: bold;
   padding: 6px 14px;
   border-radius: 6px;
@@ -57,12 +57,13 @@ nav a:hover, nav a.active {
 /* Section */
 .section-panel {
   background: rgba(20,20,30,0.9);
-  max-width: 1000px; /* same as index */
+  max-width: 1000px;
   margin: 100px auto 50px auto;
   padding: 25px;
   border-radius: 12px;
 }
 
+/* Section Titles */
 .section-panel h2 {
   font-size:28px;
   color:#00bfff;
@@ -72,24 +73,7 @@ nav a:hover, nav a.active {
   padding-bottom:5px;
 }
 
-.cards {
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
-  justify-content:center;
-}
-
-.card {
-  background:#000;
-  border:2px solid #00bfff;
-  padding:20px;
-  width:250px;
-  border-radius:12px;
-  box-shadow:0 0 15px #00bfff40;
-  text-align:center;
-}
-
-/* Review Form */
+/* Form */
 textarea, input[type="text"], input[type="number"] {
   width:100%;
   padding:12px;
@@ -158,14 +142,6 @@ footer {
     <a href="index.html#social">Connect</a>
   </nav>
 </header>
-
-<!-- Reviews Section -->
-<section class="section-panel" id="reviews">
-  <h2>Past Reviews</h2>
-  <div id="reviewsContainer" class="cards">
-    <p style="color:#aaa;">Loading reviews...</p>
-  </div>
-</section>
 
 <!-- Submit Review Section -->
 <section class="section-panel">
