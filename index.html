@@ -5,15 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Maruf Hasan Niloy Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
   font-family: 'Roboto', sans-serif;
   color: #e0e0e0;
-  display: flex;
-  flex-direction: column;
-  padding-top: 80px;
   background: linear-gradient(135deg, #0d0d0d, #111822, #0a0f25);
   min-height: 100vh;
   overflow-x: hidden;
@@ -31,48 +29,54 @@ body {
   opacity: 0.15;
 }
 
-/* Header */
+/* Header transparent & centered */
 header {
   position: fixed;
   top:0; left:0; width:100%;
   z-index:1000;
-  background: rgba(0,0,0,0.85);
-  padding: 12px 30px;
+  background: transparent;
+  padding: 8px 15px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  border-bottom: 3px solid #00bfff;
-  box-shadow: 0 4px 12px rgba(0,191,255,0.3);
 }
 
-/* Nav */
+/* Nav with icons */
 nav {
-  display: flex;
-  gap: 12px;
+  display:flex;
+  gap:12px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 nav a {
-  color: #ccc;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 6px 14px;
-  border-radius: 6px;
-  border: 2px solid transparent;
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+  padding:6px 12px;
+  border-radius:6px;
+  border:2px solid transparent;
+  font-size:14px;
+  display: flex;
+  align-items: center;
+  gap:6px;
   transition: all 0.3s ease;
 }
 
-nav a:hover {
-  color: #00bfff;
-  border: 2px solid #00bfff;
-  box-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff, 0 0 15px #00bfff;
-  transform: scale(1.05);
+nav a .icon { font-size:16px; }
+
+nav a:hover, nav a.active {
+  color:#00bfff;
+  border:2px solid #00bfff;
+  box-shadow:0 0 15px #00bfff, 0 0 25px #00bfff;
+  transform:scale(1.05);
 }
 
-/* Hero */
+/* Hero / Profile Section */
 .hero {
   text-align: center;
   padding: 50px 20px 25px 20px;
+  margin-top: 60px;
 }
 
 .hero img {
@@ -82,6 +86,13 @@ nav a:hover {
   object-fit: cover;
   box-shadow: 0 0 30px #00bfff;
   margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
 }
 
 .hero h1 {
@@ -96,7 +107,7 @@ nav a:hover {
   color: #b8c6ff;
 }
 
-/* Sections */
+/* Sections (Skills, Projects, Connect) */
 .section-panel {
   background: rgba(20,20,30,0.9);
   padding: 25px 15px;
@@ -117,7 +128,7 @@ nav a:hover {
   padding-bottom: 5px;
 }
 
-/* Cards */
+/* Cards inside sections */
 .cards {
   display:flex;
   gap:25px;
@@ -163,7 +174,7 @@ nav a:hover {
   transform: scale(1.2);
 }
 
-/* Copy message */
+/* Copy message at bottom center */
 #copyMessage {
   position: fixed;
   bottom: 50px;
@@ -190,23 +201,7 @@ footer {
 
 /* Responsive */
 @media(max-width:768px){
-  header {
-    flex-direction: column;
-    align-items: center;
-    padding: 10px 15px;
-  }
-
-  nav {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  nav a {
-    font-size: 13px;
-    padding: 6px 10px;
-    margin: 2px 0;
-  }
-
+  nav a { font-size:12px; padding:4px 8px; }
   .hero img { width: 150px; height: 150px; }
   .hero h1 { font-size: 28px; }
   .hero p { font-size: 16px; }
@@ -225,36 +220,30 @@ footer {
 
 <!-- Header -->
 <header>
- <nav>
-  <a href="#home">Home</a>
-  <a href="#skills">Skills</a>
-  <a href="#projects">Projects</a>
-  <a href="review.html">Reviews</a>
-  <a href="#social">Connect</a>
- </nav>
+  <nav>
+    <a href="index.html" class="active"><span class="icon">🏠</span> Home</a>
+    <a href="#skills"><span class="icon">💻</span> Skills</a>
+    <a href="#projects"><span class="icon">📂</span> Projects</a>
+    <a href="#social"><span class="icon">🤝</span> Connect</a>
+  </nav>
 </header>
 
-<!-- Hero -->
-<section class="hero" id="home">
+<!-- Hero / Profile Section -->
+<section class="hero">
   <a href="profile.html"><img src="assets/me.png" alt="Maruf Hasan Niloy"></a>
   <h1>Maruf Hasan Niloy</h1>
-  <p>Graphics Designer | Minecraft Developer</p>
+  <p>Minecraft & Discord Developer</p>
 </section>
 
 <!-- Skills Section -->
 <section class="section-panel" id="skills">
   <h2>Skills</h2>
   <div class="cards">
+    <div class="card">Minecraft Plugin Development</div>
     <div class="card">Minecraft Server Setup</div>
-    <div class="card">Custom Plugin Development</div>
-    <div class="card">Server Optimization</div>
-    <div class="card">VPS Setup & Management</div>
-    <div class="card">Java, CSS & HTML</div>
-    <div class="card">Responsive Web Design</div>
-    <div class="card">Website Performance Optimization</div>
-    <div class="card">Designing</div>
-    <div class="card">Banner & Logo Design</div>
-    <div class="card">Adobe Photoshop / Canva</div>
+    <div class="card">HTML, CSS, JavaScript</div>
+    <div class="card">Web Design</div>
+    <div class="card">Backend Configuration</div>
   </div>
 </section>
 
@@ -263,28 +252,16 @@ footer {
   <h2>Projects</h2>
   <div class="cards">
     <div class="card">
-      <h3>50+ Minecraft Server Setups</h3>
-      <p>Completed fully optimized servers including plugins, ranks, GUI menus, permissions, gameplay systems, and performance tuning.</p>
+      <h3>Minecraft Server Setup</h3>
+      <p>Created optimized Minecraft servers with plugins, menus, permissions, and performance tweaks.</p>
     </div>
     <div class="card">
-      <h3>20+ Website Setups</h3>
-      <p>Designed and built responsive websites for businesses, portfolios, stores, and custom landing pages.</p>
+      <h3>Custom Plugins</h3>
+      <p>Developed custom gameplay plugins for unique server features and automation.</p>
     </div>
     <div class="card">
-      <h3>4.5★ Rating on Fiverr & Upwork</h3>
-      <p>Successfully delivered high-quality work in server development, configuration, and graphic design services.</p>
-    </div>
-    <div class="card">
-      <h3>Custom Plugin Development</h3>
-      <p>Developed multiple custom plugins for gameplay features, automation, economy, protection, and server utilities.</p>
-    </div>
-    <div class="card">
-      <h3>Graphic Design Projects</h3>
-      <p>Created professional logos, banners, thumbnails, and server branding packs for clients.</p>
-    </div>
-    <div class="card">
-      <h3>Full Server Branding</h3>
-      <p>Delivered complete branding packages including logo, icon, banner, store design, and UI elements.</p>
+      <h3>Web Portfolio</h3>
+      <p>Built responsive websites for personal and professional use.</p>
     </div>
   </div>
 </section>
@@ -308,9 +285,9 @@ footer {
 <footer>© 2025 Maruf Hasan Niloy. All rights reserved.</footer>
 
 <script>
-// Copy Discord
 const discordContainer = document.getElementById('discordCopyContainer');
 const copyMessage = document.getElementById('copyMessage');
+
 discordContainer.addEventListener('click', () => {
   const discordUsername = 'crazy_niloy';
   navigator.clipboard.writeText(discordUsername)
@@ -320,8 +297,6 @@ discordContainer.addEventListener('click', () => {
     })
     .catch(err => console.error('Could not copy text: ', err));
 });
-
-// Removed scroll-based nav glow. Only hover effect remains.
 </script>
 
 </body>
